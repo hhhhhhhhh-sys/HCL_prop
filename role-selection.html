@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Your Role</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <div class="role-modal">
+        <div class="modal-content animate__animated animate__zoomIn">
+            <h3>Select Your Role</h3>
+            <p class="modal-subtitle">Please choose how you'd like to access the system</p>
+            
+            <div class="role-options">
+                <div class="role-card admin" id="adminRole">
+                    <div class="role-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="role-title">Administrator</div>
+                    <div class="role-desc">Manage attendance, leaves, and employee data</div>
+                </div>
+                
+                <div class="role-card employee" id="employeeRole">
+                    <div class="role-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="role-title">Employee</div>
+                    <div class="role-desc">View your attendance and request time off</div>
+                </div>
+            </div>
+            
+            <button class="back-btn" id="backButton" type="button">
+                <i class="fas fa-arrow-left"></i> Back to Login
+            </button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

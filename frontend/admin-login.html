@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <a class="auth-brand" href="index.html"><span class="brand-mark">A</span> Attendance Pro</a>
+            <p class="auth-kicker">ADMIN WORKSPACE</p>
+            <h2>Welcome back.</h2>
+            <p class="auth-copy">Sign in to manage your people and attendance.</p>
+            <form id="adminLoginForm">
+                <div class="form-group">
+                    <label for="adminUsername">Username</label>
+                    <input type="text" id="adminUsername" autocomplete="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword">Password</label>
+                    <input type="password" id="adminPassword" autocomplete="current-password" placeholder="Enter your password" required>
+                </div>
+                <p class="auth-feedback" data-auth-feedback role="status" aria-live="polite" hidden></p>
+                <div class="auth-actions">
+                    <button type="submit" class="primary-btn">Sign in <i class="fas fa-arrow-right"></i></button>
+                    <button type="button" id="adminBackButton" class="secondary-btn">Back</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

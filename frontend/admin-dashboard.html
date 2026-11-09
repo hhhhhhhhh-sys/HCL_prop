@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Attendance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-dashboard dashboard-shell">
+        <aside class="sidebar dashboard-sidebar" id="dashboardSidebar">
+            <a class="dashboard-brand" href="admin-dashboard.html" aria-label="Attendance home">
+                <span class="brand-mark">A</span>
+                <span>Attendance<span class="brand-subtitle">PEOPLE OPERATIONS</span></span>
+            </a>
+
+            <div class="user-profile dashboard-profile">
+                <span class="profile-avatar" id="adminAvatarMark">A</span>
+                <span class="profile-copy">
+                    <h4 id="adminName">Admin Name</h4>
+                    <p id="adminRole">Administrator</p>
+                </span>
+            </div>
+
+            <nav class="nav-menu dashboard-nav" aria-label="Admin dashboard">
+                <span class="nav-caption">WORKSPACE</span>
+                <ul>
+                    <li class="active"><a href="#dashboardOverview" data-dashboard-nav><i class="fas fa-chart-pie"></i><span>Overview</span></a></li>
+                    <li><a href="#searchEmployeeSection" data-dashboard-nav><i class="fas fa-magnifying-glass"></i><span>Find employee</span></a></li>
+                    <li><button type="button" data-view="attendance"><i class="fas fa-calendar-check"></i><span>Attendance</span></button></li>
+                    <li><button type="button" data-view="leaves"><i class="fas fa-calendar-minus"></i><span>Leave requests</span></button></li>
+                    <li><button type="button" data-view="shifts"><i class="fas fa-clock"></i><span>Shift records</span></button></li>
+                </ul>
+                <span class="nav-caption nav-caption--lower">ACCOUNT</span>
+                <ul>
+                    <li><button type="button" id="addEmployeeNavBtn"><i class="fas fa-user-plus"></i><span>Add employee</span></button></li>
+                    <li><a href="index.html" id="logoutBtn"><i class="fas fa-arrow-right-from-bracket"></i><span>Sign out</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-note"><span class="status-dot"></span> Connected to attendance system</div>
+        </aside>
+
+        <main class="main-content dashboard-main">
+            <header class="dashboard-topbar">
+                <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Open navigation" aria-expanded="false"><i class="fas fa-bars"></i></button>
+                <div class="topbar-date"><i class="far fa-calendar"></i><span id="dashboardDate"></span></div>
+                <div class="topbar-actions">
+                    <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode" aria-pressed="false"><i class="fas fa-moon"></i></button>
+                    <button id="addEmployeeBtn" class="primary-btn"><i class="fas fa-plus"></i><span>Add employee</span></button>
+                </div>
+            </header>
+
+            <section class="dashboard-intro" id="dashboardOverview">
+                <div>
+                    <p class="eyebrow">ATTENDANCE / OVERVIEW</p>
+                    <h1>Good <span id="greetingPeriod">day</span>, <span id="adminWelcomeName">admin</span><span class="title-period">.</span></h1>
+                    <p class="intro-copy">Here’s the pulse of your workforce today.</p>
+                </div>
+            </section>
+
+            <section class="dashboard-metrics" aria-label="Workforce summary">
+                <article class="metric-card metric-card--green">
+                    <div class="metric-top"><span>Total employees</span><i class="fas fa-users"></i></div>
+                    <strong id="totalEmployees">—</strong>
+                    <span class="metric-foot">Across your organization</span>
+                </article>
+                <article class="metric-card metric-card--mint">
+                    <div class="metric-top"><span>Active employees</span><i class="fas fa-user-check"></i></div>
+                    <strong id="activeEmployees">—</strong>
+                    <span class="metric-foot">Currently active</span>
+                </article>
+                <article class="metric-card metric-card--yellow">
+                    <div class="metric-top"><span>Present today</span><i class="fas fa-fingerprint"></i></div>
+                    <strong id="presentToday">—</strong>
+                    <span class="metric-foot">Attendance recorded today</span>
+                </article>
+                <article class="metric-card metric-card--coral">
+                    <div class="metric-top"><span>Pending leave</span><i class="fas fa-hourglass-half"></i></div>
+                    <strong id="pendingLeaveCount">—</strong>
+                    <span class="metric-foot">Waiting for review</span>
+                </article>
+            </section>
+
+            <section id="searchEmployeeSection" class="dashboard-panel search-panel">
+                <div class="panel-heading">
+                    <div><p class="eyebrow">DIRECTORY</p><h2>Find a colleague</h2></div>
+                    <span class="panel-index">01</span>
+                </div>
+                <p class="panel-copy">Search by employee ID to open their details, attendance, leaves, and shifts.</p>
+                <form class="search-form" id="employeeSearchForm">
+                    <label class="visually-hidden" for="empIdSearch">Employee ID</label>
+                    <span class="search-input-wrap"><i class="fas fa-magnifying-glass"></i><input type="number" id="empIdSearch" placeholder="Enter employee ID" min="1" required></span>
+                    <button id="searchEmployeeBtn" class="primary-btn" type="submit">Search employee <i class="fas fa-arrow-right"></i></button>
+                </form>
+            </section>
+
+            <section id="employeeDetailsSection" class="dashboard-panel details-panel" style="display: none;">
+                <div class="panel-heading">
+                    <div><p class="eyebrow">EMPLOYEE RECORD</p><h2>Employee details</h2></div>
+                    <span class="panel-index">02</span>
+                </div>
+                <div id="employeeDetails" class="employee-detail-grid"></div>
+                <div class="action-buttons dashboard-actions">
+                    <button id="viewAttendanceBtn" class="secondary-btn"><i class="fas fa-calendar-check"></i> Attendance</button>
+                    <button id="viewLeavesBtn" class="secondary-btn"><i class="fas fa-calendar-minus"></i> Leave requests</button>
+                    <button id="viewShiftsBtn" class="secondary-btn"><i class="fas fa-clock"></i> Shifts</button>
+                    <button id="generateReportBtn" class="secondary-btn"><i class="fas fa-file-lines"></i> Report</button>
+                    <button id="deleteEmployeeBtn" class="danger-btn"><i class="fas fa-trash-can"></i> Delete employee</button>
+                </div>
+            </section>
+
+            <section id="resultsSection" class="dashboard-panel results-panel" style="display: none;">
+                <div class="section-header panel-heading">
+                    <div><p class="eyebrow">RECORDS</p><h2 id="resultsTitle">Results</h2></div>
+                    <button id="closeResultsBtn" class="icon-button" type="button" aria-label="Close results"><i class="fas fa-xmark"></i></button>
+                </div>
+                <div id="resultsContent"></div>
+            </section>
+            <footer class="dashboard-footer"><span>Attendance management</span><span>Secure workspace · <span id="footerYear"></span></span></footer>
+        </main>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

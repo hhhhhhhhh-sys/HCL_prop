@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard | Attendance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="employee-dashboard dashboard-shell">
+        <aside class="sidebar dashboard-sidebar" id="dashboardSidebar">
+            <a class="dashboard-brand" href="employee-dashboard.html" aria-label="Attendance home">
+                <span class="brand-mark">A</span>
+                <span>Attendance<span class="brand-subtitle">EMPLOYEE SPACE</span></span>
+            </a>
+
+            <div class="user-profile dashboard-profile">
+                <span class="profile-avatar" id="employeeAvatarMark">E</span>
+                <span class="profile-copy">
+                    <h4 id="employeeName">Employee Name</h4>
+                    <p id="employeeDepartment">Department</p>
+                </span>
+            </div>
+
+            <nav class="nav-menu dashboard-nav" aria-label="Employee dashboard">
+                <span class="nav-caption">MY WORKSPACE</span>
+                <ul>
+                    <li class="active"><a href="#employeeOverview" data-dashboard-nav><i class="fas fa-chart-pie"></i><span>Overview</span></a></li>
+                    <li><button type="button" data-employee-action="attendance"><i class="fas fa-calendar-check"></i><span>My attendance</span></button></li>
+                    <li><button type="button" data-employee-action="leave"><i class="fas fa-calendar-plus"></i><span>Apply for leave</span></button></li>
+                    <li><button type="button" data-employee-action="shifts"><i class="fas fa-clock"></i><span>My shifts</span></button></li>
+                    <li><a href="#employeeProfileSection" data-dashboard-nav><i class="fas fa-id-card"></i><span>My profile</span></a></li>
+                </ul>
+                <span class="nav-caption nav-caption--lower">ACCOUNT</span>
+                <ul><li><a href="index.html" id="logoutBtn"><i class="fas fa-arrow-right-from-bracket"></i><span>Sign out</span></a></li></ul>
+            </nav>
+            <div class="sidebar-note"><span class="status-dot"></span> Your attendance workspace</div>
+        </aside>
+
+        <main class="main-content dashboard-main">
+            <header class="dashboard-topbar">
+                <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Open navigation" aria-expanded="false"><i class="fas fa-bars"></i></button>
+                <div class="topbar-date"><i class="far fa-calendar"></i><span id="dashboardDate"></span></div>
+                <div class="topbar-actions"><button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode" aria-pressed="false"><i class="fas fa-moon"></i></button><span class="signed-in-label"><span class="status-dot"></span> Signed in</span></div>
+            </header>
+
+            <section class="dashboard-intro employee-intro" id="employeeOverview">
+                <div>
+                    <p class="eyebrow">MY ATTENDANCE / OVERVIEW</p>
+                    <h1>Good <span id="greetingPeriod">day</span>, <span id="employeeWelcomeName">there</span><span class="title-period">.</span></h1>
+                    <p class="intro-copy">A clear view of your attendance, leave, and upcoming work.</p>
+                </div>
+                <div class="intro-stamp"><span class="stamp-label">YOUR SPACE</span><span class="stamp-value"><span class="status-dot"></span> Account active</span></div>
+            </section>
+
+            <section class="employee-metrics" aria-label="Personal summary">
+                <article class="metric-card metric-card--green attendance-metric">
+                    <div class="metric-top"><span>Attendance rate</span><i class="fas fa-chart-line"></i></div>
+                    <div class="attendance-value-row"><strong id="attendancePercentage">—</strong><span class="metric-unit">%</span></div>
+                    <span class="metric-foot">Based on your recorded attendance</span>
+                </article>
+                <article class="metric-card metric-card--yellow">
+                    <div class="metric-top"><span>Pending leave</span><i class="fas fa-hourglass-half"></i></div>
+                    <strong id="pendingLeaves">—</strong>
+                    <span class="metric-foot">Requests awaiting review</span>
+                </article>
+                <article class="action-feature">
+                    <div class="feature-copy"><span class="feature-kicker">NEED TIME AWAY?</span><h2>Plan your leave.</h2><p>Send a request to your manager in a few steps.</p></div>
+                    <button id="applyLeaveBtn" type="button" class="feature-button" aria-label="Apply for leave"><i class="fas fa-arrow-up-right-from-square"></i></button>
+                </article>
+            </section>
+
+            <div class="employee-content-grid">
+                <section id="employeeProfileSection" class="dashboard-panel profile-panel">
+                    <div class="panel-heading"><div><p class="eyebrow">YOUR INFORMATION</p><h2>Profile details</h2></div><span class="panel-index">01</span></div>
+                    <div id="employeePersonalDetails" class="profile-details-grid"></div>
+                </section>
+                <section class="dashboard-panel quick-actions-panel">
+                    <div class="panel-heading"><div><p class="eyebrow">QUICK ACCESS</p><h2>Your records</h2></div><span class="panel-index">02</span></div>
+                    <button id="viewMyAttendanceBtn" class="record-action" type="button"><span class="record-icon record-icon--green"><i class="fas fa-calendar-check"></i></span><span><strong>Attendance history</strong><small>Review your recorded days</small></span><i class="fas fa-arrow-right record-arrow"></i></button>
+                    <button id="viewMyShiftsBtn" class="record-action" type="button"><span class="record-icon record-icon--yellow"><i class="fas fa-clock"></i></span><span><strong>Shift schedule</strong><small>View your shift records</small></span><i class="fas fa-arrow-right record-arrow"></i></button>
+                </section>
+            </div>
+
+            <section id="resultsSection" class="dashboard-panel results-panel" style="display: none;">
+                <div class="section-header panel-heading"><div><p class="eyebrow">YOUR RECORDS</p><h2 id="resultsTitle">Results</h2></div><button id="closeResultsBtn" class="icon-button" type="button" aria-label="Close results"><i class="fas fa-xmark"></i></button></div>
+                <div id="resultsContent"></div>
+            </section>
+            <footer class="dashboard-footer"><span>Attendance management</span><span>Private employee workspace · <span id="footerYear"></span></span></footer>
+        </main>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
